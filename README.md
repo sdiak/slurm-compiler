@@ -13,7 +13,7 @@ How-to :
 - compile Slurm : `docker run -v ./build:/build-output -i rocky-slurm-build`
 - RPMs will be built into the `./build/${ARCH}/` folder, the rpmbuild log is into `./build/rpmbuild.log`
 
-Custom RPM :\
+**Custom RPM :**\
 You can add some rpm to be installed in the image by putting them in the [assets/rpms/](./assets/rpms/) folder.\
 For example to build the plugin **switch/hpe_slingshot** you can add :
 
