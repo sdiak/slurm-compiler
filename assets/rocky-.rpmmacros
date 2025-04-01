@@ -1,0 +1,2 @@
+%_enable_debug     "--with-debug"
+%__make         /usr/bin/make -j

@@ -9,5 +9,5 @@ die() {
 if [ ! -d "/build-output" ]; then
     die "please mount the build output dir like so: \`docker run -v ./build:/build-output -i rocky-slurm-build\`"
 fi
-echo "%__make         /usr/bin/make -j" >  ~/.rpmmacros
+
 rpmbuild --with slurmrestd --with cgroup --define "_rpmdir /build-output" -ta ${SLURM_TARBALL} 2>&1 | tee /build-output/rpmbuild.log
