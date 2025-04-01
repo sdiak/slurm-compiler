@@ -37,16 +37,3 @@ RUN mk-build-deps -t "apt-get -o Debug::pkgProblemResolver=yes --no-install-reco
 COPY assets/ubuntu-slurm-build.sh /root/slurm-build.sh
 WORKDIR /root/
 CMD ["./slurm-build.sh"]
-
-# # creates a user for the build process
-# RUN useradd -ms /bin/bash slurm-build
-# # copy slurm sources this user directory
-# ADD ${SLURM_TARBALL_LOC} /home/slurm-build/
-# # Install the build script
-# COPY assets/ubuntu-slurm-build.sh /home/slurm-build/slurm-build.sh
-# RUN chown slurm-build:slurm-build /home/slurm-build/slurm-*
-# # change to the build user
-# USER slurm-build
-# WORKDIR /home/slurm-build/
-
-# CMD ["./slurm-build.sh"]
