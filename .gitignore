@@ -1,2 +1,4 @@
 assets/root_certs/*.pem
+assets/rpms/*.rpm
+assets/debs/*.rpm
 build/

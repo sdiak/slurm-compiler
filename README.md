@@ -13,6 +13,17 @@ How-to :
 - compile Slurm : `docker run -v ./build:/build-output -i rocky-slurm-build`
 - RPMs will be built into the `./build/${ARCH}/` folder, the rpmbuild log is into `./build/rpmbuild.log`
 
+Custom RPM :\
+You can add some rpm to be installed in the image by putting them in the [assets/rpms/](./assets/rpms/) folder.\
+For example to build the plugin **switch/hpe_slingshot** you can add :
+
+- cray-cassini-headers-user-*.rpm 
+- cray-libcxi-devel-*.rpm
+- cray-cxi-driver-devel-*.rpm
+- cray-slingshot-base-link-devel-*.rpm
+- cray-libcxi-*.rpm
+- sl-driver-devel-*.rpm
+
 
 ## Ubuntu
 
@@ -24,3 +35,4 @@ How-to :
 - Build the image, edit **24.05.7** to the desired Slurm version : `docker build -t ubuntu-slurm-build --build-arg version="24.05.7" -f ubuntu-Dockerfile .`
 - compile Slurm : `docker run -v ./build:/build-output -i ubuntu-slurm-build`
 - DEBs will be built into the `./build/` folder, the rpmbuild log is into `./build/debuild.log`
+
