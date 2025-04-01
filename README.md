@@ -36,3 +36,6 @@ How-to :
 - compile Slurm : `docker run -v ./build:/build-output -i ubuntu-slurm-build`
 - DEBs will be built into the `./build/` folder, the rpmbuild log is into `./build/debuild.log`
 
+
+**Custom DEB :**\
+You can add some deb to be installed in the image by putting them in the [assets/debs/](./assets/debs/) folder.

@@ -23,6 +23,11 @@ RUN update-ca-certificates
 
 RUN apt -y update && apt install -y build-essential fakeroot devscripts equivs libibmad-dev libibumad-dev libnvidia-ml-dev python3 liblua5.4-dev libhdf5-dev libhwloc-dev man2html libjwt-dev libbpf-dev numactl hwloc libhwloc-dev libjson-c-dev libyaml-dev libhttp-parser-dev libcurl4-openssl-dev munge libmunge-dev libpam0g-dev libreadline-dev libssl-dev libmariadb-dev libdbus-1-dev libfreeipmi-dev
 
+# custom debs
+COPY assets/debs /tmp/debs
+# install custom debs
+RUN ls /tmp/debs/*.deb > /dev/null 2>&1 && cd /tmp/debs && apt install -y ./*.deb
+
 # copy slurm sources this user directory
 ADD ${SLURM_TARBALL_LOC} /root/
 # Install the build script
