@@ -1,0 +1,38 @@
+FROM rockylinux/rockylinux:8.10
+#Sékou DIAKITE <sekou.diakite@hpe.com>
+
+ARG version="23.02.6"
+
+# Version of slurm to compile
+ENV SLURM_VERSION "${version}"
+# Slurm tarball name
+ENV SLURM_TARBALL "slurm-${SLURM_VERSION}.tar.bz2"
+# Where to get slurm tarball
+ENV SLURM_TARBALL_LOC "https://download.schedmd.com/slurm/${SLURM_TARBALL}"
+
+# If you organization needs a/some root certificate(s), copy it/them to this "Dockerfile" directory with the extension ".pem"
+COPY assets/root_certs/*.pem /etc/pki/ca-trust/source/anchors/
+#  - Remove the dummy cert
+RUN rm /etc/pki/ca-trust/source/anchors/dummy_cert___do_not_remove.pem
+#  - Update the root certificates with the optionals .pem
+RUN update-ca-trust
+
+
+# Install build dependencies
+RUN yum group install -y "Development Tools"
+RUN yum install -y epel-release
+RUN yum config-manager --set-enabled powertools
+RUN yum install -y python3 lua-devel hdf5-devel hwloc-devel man2html libjwt-devel libbpf-devel numactl-devel numactl-libs hwloc-libs hwloc-devel hwloc json-c-devel libyaml-devel http-parser-devel libcurl-devel rpmdevtools munge munge-libs munge-devel pam-devel readline-devel perl-ExtUtils-MakeMaker openssl-devel pam-devel rpm-build perl-DBI perl-Switch mariadb-devel dbus-devel
+
+# creates a user for the build process
+RUN useradd -ms /bin/bash slurm-build
+# copy slurm sources this user directory
+ADD ${SLURM_TARBALL_LOC} /home/slurm-build/
+# Install the build script
+COPY assets/rocky-slurm-build.sh /home/slurm-build/slurm-build.sh
+RUN chown slurm-build:slurm-build /home/slurm-build/slurm-*
+# change to the build user
+USER slurm-build
+WORKDIR /home/slurm-build/
+
+CMD ["./slurm-build.sh"]
