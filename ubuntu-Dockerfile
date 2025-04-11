@@ -26,7 +26,7 @@ RUN apt -y update && apt install -y build-essential fakeroot devscripts equivs l
 # custom debs
 COPY assets/debs /tmp/debs
 # install custom debs
-RUN ls /tmp/debs/*.deb > /dev/null 2>&1 && cd /tmp/debs && apt install -y ./*.deb
+RUN (ls /tmp/debs/*.deb > /dev/null 2>&1 && cd /tmp/debs && apt install -y ./*.deb) || /bin/true
 
 # copy slurm sources this user directory
 ADD ${SLURM_TARBALL_LOC} /root/
