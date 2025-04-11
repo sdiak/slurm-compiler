@@ -7,7 +7,7 @@ die() {
 }
 
 if [ ! -d "/build-output" ]; then
-    die "please mount the build output dir like so: \`docker run -v ./build:/build-output -i rocky-slurm-build\`"
+    die "please mount the build output dir like so: \`docker run -v ./build:/build-output -i ubuntu-slurm-build\`"
 fi
 
 cd "slurm-${SLURM_VERSION}"
