@@ -1,2 +1,3 @@
-%_enable_debug     "--with-debug"
+%_enable_debug  "--with-debug"
 %__make         /usr/bin/make -j
+%_with_pmix     --with-pmix=/usr

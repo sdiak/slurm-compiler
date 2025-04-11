@@ -21,7 +21,7 @@ RUN rm /usr/local/share/ca-certificates/dummy_cert___do_not_remove.pem
 #  - Update the root certificates with the optionals .pem
 RUN update-ca-certificates
 
-RUN apt -y update && apt install -y build-essential fakeroot devscripts equivs libibmad-dev libibumad-dev libnvidia-ml-dev python3 liblua5.4-dev libhdf5-dev libhwloc-dev man2html libjwt-dev libbpf-dev numactl hwloc libhwloc-dev libjson-c-dev libyaml-dev libhttp-parser-dev libcurl4-openssl-dev munge libmunge-dev libpam0g-dev libreadline-dev libssl-dev libmariadb-dev libdbus-1-dev libfreeipmi-dev
+RUN apt -y update && apt install -y libpmix-dev libevent-dev build-essential fakeroot devscripts equivs libibmad-dev libibumad-dev libnvidia-ml-dev python3 liblua5.4-dev libhdf5-dev libhwloc-dev man2html libjwt-dev libbpf-dev numactl hwloc libhwloc-dev libjson-c-dev libyaml-dev libhttp-parser-dev libcurl4-openssl-dev munge libmunge-dev libpam0g-dev libreadline-dev libssl-dev libmariadb-dev libdbus-1-dev libfreeipmi-dev
 
 # custom debs
 COPY assets/debs /tmp/debs
