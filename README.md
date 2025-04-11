@@ -34,7 +34,7 @@ How-to :
 - if the docker image needs a root certificate to access the internet (for example `zscaler.pem`) add it to `./assets/root_certs/`
 - Build the image, edit **24.05.7** to the desired Slurm version : `docker build -t ubuntu-slurm-build --build-arg version="24.05.7" -f ubuntu-Dockerfile .`
 - compile Slurm : `docker run -v ./build:/build-output -i ubuntu-slurm-build`
-- DEBs will be built into the `./build/` folder, the rpmbuild log is into `./build/debuild.log`
+- DEBs will be built into the `./build/` folder, the debuild log is into `./build/debuild.log`
 
 
 **Custom DEB :**\
