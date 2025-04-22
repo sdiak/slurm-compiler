@@ -31,7 +31,7 @@ RUN (ls /tmp/debs/*.deb > /dev/null 2>&1 && cd /tmp/debs && apt install -y ./*.d
 # copy slurm sources this user directory
 ADD ${SLURM_TARBALL_LOC} /root/
 # Install the build script
-COPY assets/ubuntu-libnvidia-ml-dev slurm-build.sh /root/slurm-build.sh
+COPY assets/ubuntu-slurm-build.sh /root/slurm-build.sh
 # change to the build user
 WORKDIR /root/
 
